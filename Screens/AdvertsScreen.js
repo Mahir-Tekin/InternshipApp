@@ -1,0 +1,101 @@
+import React, { useState } from 'react';
+import { View, Text, Image, FlatList, TextInput, StyleSheet } from 'react-native';
+
+const AdvertsScreen = () => {
+  // Dummy data for adverts
+  const adverts = [
+    {
+      id: '1',
+      username: 'seller1',
+      profilePicture: 'https://via.placeholder.com/150',
+      adTitle: 'Amazing Apartment Downtown'
+    },
+    {
+      id: '2',
+      username: 'seller2',
+      profilePicture: 'https://via.placeholder.com/150',
+      adTitle: 'Used Car in Good Condition'
+    },
+    {
+      id: '3',
+      username: 'seller3',
+      profilePicture: 'https://via.placeholder.com/150',
+      adTitle: 'Brand New Bicycle'
+    }
+  ];
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const renderItem = ({ item }) => (
+    <View style={styles.adContainer}>
+      <View style={styles.header}>
+        <Image source={{ uri: item.profilePicture }} style={styles.profilePic} />
+        <Text style={styles.username}>{item.username}</Text>
+      </View>
+      <Text style={styles.adTitle}>{item.adTitle}</Text>
+    </View>
+  );
+
+  return (
+    <View style={styles.container}>
+      <TextInput
+        style={styles.searchBar}
+        value={searchQuery}
+        onChangeText={setSearchQuery}
+        placeholder="Search ads..."
+      />
+      <FlatList
+        data={adverts}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 20,
+  },
+  searchBar: {
+    height: 40,
+    marginHorizontal: 10,
+    marginBottom: 20,
+    paddingHorizontal: 10,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 10,
+  },
+  adContainer: {
+    backgroundColor: '#fff',
+    padding: 10,
+    marginHorizontal: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  profilePic: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginRight: 10,
+  },
+  username: {
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  adTitle: {
+    fontSize: 18,
+    marginTop: 5,
+  }
+});
+
+export default AdvertsScreen;

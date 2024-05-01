@@ -1,0 +1,25 @@
+[
+    {
+        "id": 1,
+        "username": "user1",
+        "password": "pass1",
+        "role": "admin",
+        "profilePicture": "base64",
+        "email": "user1@example.com",
+        "phone":"0000000000",
+        "resume":"",
+        "education":""
+    },
+    {
+        "id": 2,
+        "username": "user2",
+        "password": "a",
+        "role": "user",
+        "profilePicture": "base64",
+        "email": "a",
+        "phone":"0000000000",
+        "resume":"",
+        "education":""
+
+    }
+]
