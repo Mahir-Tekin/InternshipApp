@@ -1,41 +1,24 @@
 import React, { useState } from 'react';
-import { View, Text, Image, FlatList, TextInput, StyleSheet } from 'react-native';
+import { View, Text, Image, FlatList, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import advertsData from "../data/Adverts.json";  // Assuming the file export is default and contains an object with an 'adverts' key
 
 const AdvertsScreen = () => {
-  // Dummy data for adverts
-  const adverts = [
-    {
-      id: '1',
-      username: 'seller1',
-      profilePicture: 'https://via.placeholder.com/150',
-      adTitle: 'Amazing Apartment Downtown'
-    },
-    {
-      id: '2',
-      username: 'seller2',
-      profilePicture: 'https://via.placeholder.com/150',
-      adTitle: 'Used Car in Good Condition'
-    },
-    {
-      id: '3',
-      username: 'seller3',
-      profilePicture: 'https://via.placeholder.com/150',
-      adTitle: 'Brand New Bicycle'
-    }
-  ];
-
+  const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = useState('');
 
   const renderItem = ({ item }) => (
-    <View style={styles.adContainer}>
+    <TouchableOpacity 
+      onPress={() => navigation.navigate('AdvertDetail', { advert: item })}  
+      style={styles.adContainer}>
       <View style={styles.header}>
         <Image source={{ uri: item.profilePicture }} style={styles.profilePic} />
         <Text style={styles.username}>{item.username}</Text>
       </View>
       <Text style={styles.adTitle}>{item.adTitle}</Text>
-    </View>
+    </TouchableOpacity>
   );
-
+  
   return (
     <View style={styles.container}>
       <TextInput
@@ -45,7 +28,7 @@ const AdvertsScreen = () => {
         placeholder="Search ads..."
       />
       <FlatList
-        data={adverts}
+        data={advertsData.adverts}  
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />

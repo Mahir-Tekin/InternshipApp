@@ -11,15 +11,26 @@ import AdvertsScreen from './Screens/AdvertsScreen';
 import CreatePost from './Screens/CreatePost';
 import ApplicationScreen from './Screens/ApplicationScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import AdverDetailsCreen from './Screens/AdverDetailsCreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const HomeStack= createNativeStackNavigator();
+const AdvertStack=createNativeStackNavigator();
+
+function AdvertStackScreens(){
+  return(
+    <AdvertStack.Navigator screenOptions={{ headerShown: false }}>
+      <AdvertStack.Screen name='Adverts' component={AdvertsScreen}/>
+      <AdvertStack.Screen name='AdvertDetail' component={AdverDetailsCreen}/>
+    </AdvertStack.Navigator>
+  );
+}
 
 function HomeStackScreens(){
   return(
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
-      <HomeStack.Screen name="Home" component={HomeScreen}/>
+      <HomeStack.Screen name="Main" component={HomeScreen}/>
       <HomeStack.Screen name="Post" component={CreatePost}/>
     </HomeStack.Navigator>
   );
@@ -64,7 +75,7 @@ function TabScreens() {
     >
       <Tab.Screen name="Profile" component={ProfileScreen} />
       <Tab.Screen name="Home" component={HomeStackScreens} />
-      <Tab.Screen name="Advert" component={AdvertsScreen} options={{ tabBarLabel: 'Adverts' }} />
+      <Tab.Screen name="Advert" component={AdvertStackScreens} options={{ tabBarLabel: 'Adverts' }} />
       <Tab.Screen name="Application" component={ApplicationScreen} options={{ tabBarLabel: 'Applications' }} />
     </Tab.Navigator>
   );
