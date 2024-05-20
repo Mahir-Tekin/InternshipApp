@@ -1,25 +1,41 @@
-[
-    {
-        "id": 1,
-        "username": "user1",
-        "password": "pass1",
-        "role": "admin",
-        "profilePicture": "base64",
-        "email": "user1@example.com",
-        "phone":"0000000000",
-        "resume":"",
-        "education":""
-    },
-    {
-        "id": 2,
-        "username": "user2",
-        "password": "a",
-        "role": "user",
-        "profilePicture": "base64",
-        "email": "a",
-        "phone":"0000000000",
-        "resume":"",
-        "education":""
-
-    }
-]
+{
+    "users": [
+      {
+        "id": 101,
+        "email": "c",
+        "username": "John Doe",
+        "password": "c",
+        "photo": "base64-encoded-string",
+        "role": "company",
+        "phone": "123-456-7890",
+        "resume": "Experienced student in software development.",
+        "education": "BSc in Computer Science",
+        "location": "New York, NY"
+      },
+      {
+        "id": 102,
+        "email": "jane@example.com",
+        "username": "Jane Smith",
+        "password": "password123",
+        "photo": "base64-encoded-string",
+        "role": "student",
+        "phone": "098-765-4321",
+        "resume": "Marketing specialist with 5 years of experience.",
+        "education": "MBA in Marketing",
+        "location": "Los Angeles, CA"
+      },
+      {
+        "id": 103,
+        "email": "alice@example.com",
+        "username": "Alice Johnson",
+        "password": "password123",
+        "photo": "base64-encoded-string",
+        "role": "student",
+        "phone": "555-555-5555",
+        "resume": "Graphic designer with a passion for creating stunning visuals.",
+        "education": "BA in Graphic Design",
+        "location": "Chicago, IL"
+      }
+    ]
+  }
+  

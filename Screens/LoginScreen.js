@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-
-// Dummy data import
-import users from '../data/users.json';
+import usersData from '../data/users.json';  // import user data from the correct path
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleLogin = () => {
-        const user = users.find(u => u.email === email && u.password === password);
+        const user = usersData.users.find(u => u.email === email && u.password === password);
 
         if (user) {
-            Alert.alert('Success', 'Logged In Successfully!');
-            navigation.replace('Tab');
+            Alert.alert('Başarılı', 'Başarıyla giriş yapıldı!');
+            if (user.role === 'company') {
+                navigation.replace('CTab');
+            } else if (user.role === 'student') {
+                navigation.replace('Tab');
+            }
         } else {
-            Alert.alert('Failed', 'Invalid Credentials!');
+            Alert.alert('Başarısız', 'E-posta veya şifre hatalı!');
         }
     };
 
@@ -30,7 +32,7 @@ const LoginScreen = ({ navigation }) => {
                 keyboardType="email-address"
             />
             <TextInput
-                placeholder="Password"
+                placeholder="Şifre"
                 style={styles.input}
                 placeholderTextColor="#1C1678"
                 secureTextEntry
