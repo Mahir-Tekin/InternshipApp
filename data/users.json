@@ -14,9 +14,9 @@
       },
       {
         "id": 102,
-        "email": "jane@example.com",
+        "email": "s",
         "username": "Jane Smith",
-        "password": "password123",
+        "password": "s",
         "photo": "base64-encoded-string",
         "role": "student",
         "phone": "098-765-4321",

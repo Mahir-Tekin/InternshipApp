@@ -1,36 +1,32 @@
-import React, { useState } from 'react';
-import { View, Text, Image, FlatList, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, Text, Image, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import advertsData from "../data/Adverts.json";  // Assuming the file export is default and contains an object with an 'adverts' key
+import advertsData from "../data/Adverts.json";
 
 const AdvertsScreen = () => {
   const navigation = useNavigation();
-  const [searchQuery, setSearchQuery] = useState('');
 
   const renderItem = ({ item }) => (
     <TouchableOpacity 
-      onPress={() => navigation.navigate('AdvertDetail', { advert: item })}  
-      style={styles.adContainer}>
-      <View style={styles.header}>
-        <Image source={{ uri: item.profilePicture }} style={styles.profilePic} />
-        <Text style={styles.username}>{item.username}</Text>
+      style={styles.adContainer}
+      onPress={() => navigation.navigate('AdvertDetailsScreen', { advertId: item.id })}
+    >
+      <Image source={{ uri: `data:image/jpeg;base64,${item.profilePicture}` }} style={styles.profilePic} />
+      <View style={styles.adInfo}>
+        <Text style={styles.companyName}>{item.username}</Text>
+        <Text style={styles.position}>{item.title}</Text>
+        <Text style={styles.location}>{item.location}</Text>
+        <Text style={styles.endDate}>Son Başvuru Tarihi: {item.endDate}</Text>
       </View>
-      <Text style={styles.adTitle}>{item.adTitle}</Text>
     </TouchableOpacity>
   );
-  
+
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.searchBar}
-        value={searchQuery}
-        onChangeText={setSearchQuery}
-        placeholder="Search ads..."
-      />
       <FlatList
-        data={advertsData.adverts}  
+        data={advertsData.adverts}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id.toString()}
       />
     </View>
   );
@@ -39,46 +35,50 @@ const AdvertsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 20,
-  },
-  searchBar: {
-    height: 40,
-    marginHorizontal: 10,
-    marginBottom: 20,
-    paddingHorizontal: 10,
-    backgroundColor: '#f0f0f0',
-    borderRadius: 10,
+    backgroundColor: '#F6F5F2',
   },
   adContainer: {
-    backgroundColor: '#fff',
-    padding: 10,
-    marginHorizontal: 10,
-    marginBottom: 10,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 3,
-  },
-  header: {
     flexDirection: 'row',
-    alignItems: 'center',
+    padding: 15,
+    margin: 10,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 1.5,
   },
   profilePic: {
     width: 50,
     height: 50,
     borderRadius: 25,
-    marginRight: 10,
+    marginRight: 15,
   },
-  username: {
-    fontWeight: 'bold',
-    fontSize: 16,
+  adInfo: {
+    flex: 1,
+    justifyContent: 'center',
   },
-  adTitle: {
+  companyName: {
     fontSize: 18,
+    fontWeight: 'bold',
+    color: '#1C1678',
+  },
+  position: {
+    fontSize: 16,
+    color: '#666',
     marginTop: 5,
-  }
+  },
+  location: {
+    fontSize: 14,
+    color: '#888',
+    marginTop: 5,
+  },
+  endDate: {
+    fontSize: 12,
+    color: '#888',
+    marginTop: 5,
+  },
 });
 
 export default AdvertsScreen;

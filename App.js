@@ -11,15 +11,16 @@ import AdvertsScreen from './Screens/AdvertsScreen';
 import CreatePost from './Screens/CreatePost';
 import ApplicationScreen from './Screens/ApplicationScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import AdverDetailsCreen from './Screens/AdverDetailsCreen';
+import AdvertDetailsScreen from './Screens/AdvertDetailsScreen';
 import ForkScreen from './Screens/ForkScreen';
 import CAdvertsScreen from './Screens/CAdvertsScreen';
 import CProfileScreen from './Screens/CProfileScreen';
 import CAdvertDetailsScreen from './Screens/CAdvertDetailsScreen';
 import CApplicationsScreen from './Screens/CApplicationsScreen';
 import CSignUp from './Screens/CSignUp';
-import CreateAdvertScreen from './Screens/CreateAdverScreen';
+import CreateAdvertScreen from './Screens/CreateAdvertScreen';
 import ApplicantProfileScreen from './Screens/ApplicantProfileScreen';
+import ApplicationDetailsScreen from './Screens/ApplicationDetailsScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +29,16 @@ const CTab= createBottomTabNavigator();
 const HomeStack= createNativeStackNavigator();
 const AdvertStack=createNativeStackNavigator();
 const CAdvertsStack=createNativeStackNavigator();
+const ApplicationsStack=createNativeStackNavigator();
+
+function ApplicationsStackScreen(){
+  return(
+    <ApplicationsStack.Navigator screenOptions={{ headerShown: false }}>
+      <ApplicationsStack.Screen name='ApplicationScreen' component={ApplicationScreen} />
+      <ApplicationsStack.Screen name='ApplicationDetailsScreen' component={ApplicationDetailsScreen} />
+    </ApplicationsStack.Navigator>
+  );
+}
 
 function CAdvertStackScreen(){
   return(
@@ -45,7 +56,7 @@ function AdvertStackScreens(){
   return(
     <AdvertStack.Navigator screenOptions={{ headerShown: false }}>
       <AdvertStack.Screen name='Adverts' component={AdvertsScreen}/>
-      <AdvertStack.Screen name='AdvertDetail' component={AdverDetailsCreen}/>
+      <AdvertStack.Screen name='AdvertDetailsScreen' component={AdvertDetailsScreen}/>
     </AdvertStack.Navigator>
   );
 }
@@ -127,7 +138,7 @@ function TabScreens() {
       <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: 'Profil' }} />
       <Tab.Screen name="Home" component={HomeStackScreens} options={{ tabBarLabel: 'Anasayfa' }} />
       <Tab.Screen name="Advert" component={AdvertStackScreens} options={{ tabBarLabel: 'İlanlar' }} />
-      <Tab.Screen name="Application" component={ApplicationScreen} options={{ tabBarLabel: 'Başvurularım' }} />
+      <Tab.Screen name="Application" component={ApplicationsStackScreen} options={{ tabBarLabel: 'Başvurularım' }} />
     </Tab.Navigator>
   );
 }
